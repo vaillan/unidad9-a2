@@ -1,6 +1,8 @@
 // Import stylesheets
 import './style.css';
-let token = "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";
+
+//Variables globales
+let token = "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";
 
 // Write Javascript code!
 
@@ -26,9 +28,26 @@ function getUser() {
   .then(response => response.text())
   .then(data => {
     const json = JSON.parse(data);
-    console.log(json);
+    const keys = Object.keys(json)
+    setAlert(keys.toLocaleString());
   });
 }
+
+/**
+ * Función para mostrar resultado
+ * @param {string}  
+ * @return {void}
+ */
+ function setAlert(value) {
+  let alert = document.getElementById('alert');
+  alert.removeAttribute('hidden');
+  alert.innerHTML = `
+  <div class="text-break">
+    Keys: [${value}]
+  </div>
+  `;
+}
+
 
 function onInit() {
   getUser()
